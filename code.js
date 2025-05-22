@@ -376,11 +376,10 @@ function updateDisplay() {
     calcData.forEach(function(item) {
         //  If maxOffers is >1, an extra column is added to show
         // the number of offers required to buy/sell that many items
-        var rowFields = "<td>" + item.name + "</td><td>" + (cheaperToNPC.includes(item) ? "N/A" : item.salesBacklog.toFixed(1)) + "</td><td>" + item.buyPrice.toFixed(1) + "</td><td>" + (cheaperToNPC.includes(item) ? item.sellPrice.toFixed(0) + " (to NPC)" : item.sellPrice.toFixed(1)) + "</td><td>" + item.profitPerItem.toFixed(1) + "</td><td>" + item.maxQuantity + "</td>";
+        var rowFields = "<td>" + item.name + "</td><td>" + (cheaperToNPC.includes(item) ? "N/A" : item.salesBacklog.toFixed(1)) + "</td><td>" + item.buyPrice.toFixed(1) + "</td><td>" + (cheaperToNPC.includes(item) ? item.sellPrice.toFixed(0) + " (to NPC)" : item.sellPrice.toFixed(1)) + "</td><td>" + item.profitPerItem.toFixed(1) + "</td><td>" + item.maxQuantity + "</td><td>" + (item.profitPerItem * itemLimit(item.id)).toFixed(1) + "</td>";
         if (maxOffers > 1 || !useOfferLimit) {
             rowFields += "<td>" + item.numOffersRequiredText + "</td>";
         }
-        rowFields += "<td" + (item.profitPerItem * 71680).toFixed(1) + "</td>";
         rowFields += "<td>" + item.totalProfit.toFixed(0) + "</td>";
         var row = $('<tr>').html(rowFields);
 
