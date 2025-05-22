@@ -362,9 +362,11 @@ function updateDisplay() {
     headerFields += "<th><div class='tooltipparent'>Sell Offer at<div class='tooltip'>'Sell Offer at' shows the price (per item) you should submit a Sell Offer at. This is 0.1 coins lower than the current lowest Sell Offer, undercutting the comptetition in the hope of a quick sale. If '(to NPC)' is shown, you can make more money selling this item to an NPC than selling on the Bazaar.</div></div></th>"
     headerFields += "<th><div class='tooltipparent'>Profit per Item<div class='tooltip'>'Profit per item' is the sell offer price &minus; the buy order price.</div></div></th>"
     headerFields += "<th><div class='tooltipparent'>Quantity<div class='tooltip'>'Quantity' shows the number of these items you can 'flip', based on the money you have available and the maximum number of orders you want to make.</div></div></th>";
+    
     if (maxOffers > 1 || !useOfferLimit) {
         headerFields += "<th><div class='tooltipparent'>Offer Breakdown<div class='tooltip'>'Offer breakdown' shows how many maximum-number orders you need to make, plus how many extra leftover items you need to order in the last order.</div></div></th>";
     }
+    headerFields += "<th><div class='tooltipparent'>Profit per Order<div class='tooltip'>'Profit per Order' shows how much money you should make by flipping one buy order (71680) of this item.</div></div></th>"
     headerFields += "<th><div class='tooltipparent'>Total Profit<div class='tooltip'>'Total profit' shows how much money you should make by flipping the stated quantity of this item.</div></div></th>";
     var header = $('<tr>').html(headerFields);
 
@@ -378,6 +380,7 @@ function updateDisplay() {
         if (maxOffers > 1 || !useOfferLimit) {
             rowFields += "<td>" + item.numOffersRequiredText + "</td>";
         }
+        rowFields += "<td" + (item.profitPerItem * 71680).toFixed(1) + "</td>";
         rowFields += "<td>" + item.totalProfit.toFixed(0) + "</td>";
         var row = $('<tr>').html(rowFields);
 
